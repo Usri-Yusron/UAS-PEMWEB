@@ -24,10 +24,22 @@ class BukuController extends Controller
 	}
 
 	public function simpan(Request $request) {
-		Buku::create($request->all());
 
+		$data = Buku::create($request->all());
+	
+		if($request->hasFile('foto')){
+	
+			$request->file('foto')->move('fotopegawai/', $request->file('foto')->getClientOriginalName());
+	
+			$data->foto = $request->file('foto')->getClientOriginalName();
+	
+			$data->save();
+	
+		}
+	
 		return redirect()->route('buku');
-    }
+	}
+	
 
 	// function buat tampilin data
 	public function tampilkandata($id)

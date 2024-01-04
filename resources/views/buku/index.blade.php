@@ -19,6 +19,7 @@
         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Penerbit</th>
         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tahun terbit</th>
         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Harga</th>
+        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Foto</th>
         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jumlah Stock</th>
         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">aksi</th>
         <th class="text-secondary opacity-7"></th>
@@ -35,6 +36,9 @@
               <td class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">{{ $item -> penerbit }}</td>
               <td class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">{{ $item -> tahun_terbit }}</td>
               <td class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">{{ $item -> harga }}</td>
+              <td class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">
+                <img src="{{ asset('fotopegawai/'.$item -> foto) }}" alt="Gambar Produk" style="width:80px;">
+              </td>
               <td class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">{{ $item -> jumlah_stock }}</td>
               <td>
                 <a href="{{ route('buku.tampilkandata', $item->id) }}" type="a" class="btn btn-primary">Edit</a>

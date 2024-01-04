@@ -3,7 +3,7 @@
 {{-- section untuk buat tabel --}}
 @section('content')
 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-  <form action="{{ route('buku.tambah.simpan') }}" method="post">
+  <form action="{{ route('buku.tambah.simpan') }}" method="post" enctype="multipart/form-data">
         @csrf
         <table  class="table">
             <tr class="text-center">
@@ -29,6 +29,10 @@
             <tr class="text-center">
                 <td>Harga</td>
                 <td><input class="form-control form-control-lg"  type="text" name="harga"required></td>
+            </tr>
+            <tr class="text-center">
+                <td>Foto</td>
+                <td><input class="form-control form-control-lg"  type="file" name="foto"required></td>
             </tr>
             <tr class="text-center">
                 <td>Jumlah Stock</td>

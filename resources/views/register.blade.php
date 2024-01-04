@@ -66,6 +66,14 @@
                         <span class="invalid-feedback">{{ $message }}</span>
                     @enderror
                   </div>
+                  <!-- Form Registrasi -->
+                  <div class="mb-3">
+                    <select name="level" class="form-control form-control-user">
+                        <option value="" disabled>User</option>
+                        <option value="user">User</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                  </div>
                   <div class="text-center">
                     <button type="submit" class="btn bg-gradient-dark w-100 my-4 mb-2">Sign up</button>
                   </div>

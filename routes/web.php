@@ -24,7 +24,7 @@ Route::controller(RegisterController::class)->group(function () {
     Route::post('login', 'loginAksi')->name('login.aksi');
 });
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'admin'])->group(function () {
 	Route::get('buku', function () {
 		return view('buku.index');
 	})->name('buku');
@@ -68,4 +68,13 @@ Route::middleware('auth')->group(function () {
 		Route::get('deletedata/{id}', 'deletedata')->name('pelanggan.deletedata');
 	});
 
+});
+
+Route::middleware(['auth', 'user'])->group(function () {
+    // Route untuk pengguna (user)
+	Route::get('user', function () {
+		return view('user.index');
+	})->name('user');
+
+    // ... tambahkan route lainnya untuk pengguna ...
 });

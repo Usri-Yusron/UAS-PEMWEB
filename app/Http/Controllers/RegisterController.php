@@ -22,14 +22,15 @@ class RegisterController extends Controller
 		Validator::make($request->all(), [
 			'nama' => 'required',
 			'email' => 'required|email',
-			'password' => 'required|confirmed'
+			'password' => 'required|confirmed',
+			'level' => 'required|in:user,admin', // Pastikan hanya user atau admin yang valid
 		])->validate();
 
 		User::create([
 			'nama' => $request->nama,
 			'email' => $request->email,
 			'password' => Hash::make($request->password),
-			'level' => 'Admin'
+			'level' => $request->level,
 		]);
 
 		return redirect()->route('login');
@@ -42,22 +43,27 @@ class RegisterController extends Controller
 	}
 
 	// ngontrol buat ngecek data ketika login
-		public function loginAksi(Request $request)
+	public function loginAksi(Request $request)
 	{
 		Validator::make($request->all(), [
 			'email' => 'required|email',
-			'password' => 'required'
+			'password' => 'required',
 		])->validate();
-
+	
 		if (!Auth::attempt($request->only('email', 'password'), $request->boolean('remember'))) {
 			throw ValidationException::withMessages([
-				'email' => trans('auth.failed')
+				'email' => trans('auth.failed'),
 			]);
 		}
-
-		$request->session()->regenerate();
-
-		return redirect()->route('buku');
+	
+		$user = Auth::user();
+	
+		if ($user->level === 'admin') {
+			return redirect()->route('buku');
+		} else {
+			return redirect()->route('user');
+		}
 	}
+	
 
 }

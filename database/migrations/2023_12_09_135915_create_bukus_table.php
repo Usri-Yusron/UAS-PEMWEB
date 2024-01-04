@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('penerbit');
             $table->string('tahun_terbit');
             $table->bigInteger('harga');
+            $table->string('foto');
             $table->integer('jumlah_stock');
             $table->timestamps();
         });
